@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import umc.spring.service.StoreService.StoreQueryService;
+import umc.spring.service.MemberMissionService.MemberMissionService;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -31,6 +32,17 @@ public class Application {
 			System.out.println("Score: " + score);
 
 			storeService.findStoresByNameAndScore(name, score)
+					.forEach(System.out::println);
+
+			// MemberMissionService 콘솔 로그 출력용
+			MemberMissionService memberMissionService = context.getBean(MemberMissionService.class);
+			Long userId = 1L;
+			Long cursorId = null;
+			int pageSize = 5;
+			System.out.println("\nExecuting getUserMissions with parameters:");
+			System.out.println("userId: " + userId + ", cursorId: " + cursorId + ", pageSize: " + pageSize);
+
+			memberMissionService.getUserMissions(userId, cursorId, pageSize)
 					.forEach(System.out::println);
 		};
 
