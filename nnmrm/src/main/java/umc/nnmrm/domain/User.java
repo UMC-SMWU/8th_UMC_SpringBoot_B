@@ -35,7 +35,7 @@ public class User extends BaseEntity {
     private Region region;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Mission> missions = new ArrayList<>();;
+    private List<Mission> missions = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
