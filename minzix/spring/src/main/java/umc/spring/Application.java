@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import umc.spring.dto.Member.MemberInfoDto;
+import umc.spring.service.MemberService.MemberQueryService;
 import umc.spring.service.MissionService.MissionQueryService;
 import umc.spring.service.ReviewService.ReviewService;
 import umc.spring.service.StoreService.StoreQueryService;
@@ -54,6 +56,17 @@ public class Application {
 			// MissionService 콘솔 로그 출력용
 			MissionQueryService missionQueryService = context.getBean(MissionQueryService.class);
 			missionQueryService.getMissionList("서울", null, 5);
+
+			// MemberQueryService 테스트 추가
+			MemberQueryService memberQueryService = context.getBean(MemberQueryService.class);
+			Long userIdForTest = 1L;
+
+			System.out.println("\nExecuting findUserInfoById with parameter:");
+			System.out.println("userId: " + userIdForTest);
+
+			MemberInfoDto memberInfo = memberQueryService.getUserInfo(userIdForTest);
+			System.out.println("MemberInfoDto: " + memberInfo);
+
 		};
 
 }}
