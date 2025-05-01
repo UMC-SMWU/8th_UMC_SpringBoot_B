@@ -1,10 +1,11 @@
 package umc.nnmrm.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
-import umc.nnmrm.domain.Region;
-import umc.nnmrm.domain.Mission;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,5 +23,5 @@ public class Store {
     private Region region;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
-    private List<Mission> missions;
+    private List<Mission> missions = new ArrayList<>();;
 }

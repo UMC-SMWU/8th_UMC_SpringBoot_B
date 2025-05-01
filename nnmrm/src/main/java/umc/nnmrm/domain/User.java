@@ -1,13 +1,15 @@
 package umc.nnmrm.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import umc.nnmrm.domain.common.BaseEntity;
-import umc.nnmrm.domain.Region;
-import umc.nnmrm.domain.Mission;
 import umc.nnmrm.domain.enums.Gender;
+import umc.nnmrm.domain.mapping.MemberPreferredFood;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,5 +34,9 @@ public class User extends BaseEntity {
     private Region region;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Mission> missions;
+    private List<Mission> missions = new ArrayList<>();;
+
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<MemberPreferredFood> preferredFoods = new ArrayList<>();
 }

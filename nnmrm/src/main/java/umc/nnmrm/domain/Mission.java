@@ -1,7 +1,5 @@
 package umc.nnmrm.domain;
 
-package umc.nnmrm.domain.mission;
-
 import jakarta.persistence.*;
 import lombok.*;
 import umc.nnmrm.domain.common.BaseEntity;

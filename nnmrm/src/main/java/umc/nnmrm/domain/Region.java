@@ -1,9 +1,9 @@
 package umc.nnmrm.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
-import umc.nnmrm.domain.Store;
-import umc.nnmrm.domain.User;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
