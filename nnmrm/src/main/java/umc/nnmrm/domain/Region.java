@@ -15,6 +15,7 @@ public class Region {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 30)
     private String regionName;
 
     @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)

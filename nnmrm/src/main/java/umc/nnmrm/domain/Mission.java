@@ -16,15 +16,15 @@ public class Mission extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long requiredAmount;
+    private Long requiredAmount = 0L;;
 
     @Enumerated(EnumType.STRING)
     private RewardType rewardType;
 
-    private float rewardAmount;
+    private float rewardAmount = 0.0f;
 
     @Enumerated(EnumType.STRING)
-    private MissionStatus status;
+    private MissionStatus status = MissionStatus.INCOMPLETE;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
