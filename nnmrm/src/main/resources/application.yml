@@ -6,10 +6,10 @@ spring:
     password: 20030819
 
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-        show_sql: true
-    open-in-view: false
+        use_sql_comments: true

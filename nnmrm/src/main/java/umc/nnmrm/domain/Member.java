@@ -49,7 +49,7 @@ public class Member extends BaseEntity {
 
     @Column(nullable = false, length = 50)
     private String email;
-    
+
     @Column(nullable = false)
     private Integer point = 0;
 
