@@ -3,7 +3,7 @@ package umc.nnmrm.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.nnmrm.domain.common.BaseEntity;
-import umc.nnmrm.domain.mapping.MemberPrefer;
+import umc.nnmrm.domain.mapping.MemberAgree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,23 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class FoodCategory extends BaseEntity {
+public class Terms extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 20)
-    private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<MemberPrefer> memberPrefers = new ArrayList<>();
+    @Column(nullable = false, length = 20)
+    private String title;
+
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String body;
+
+    @Column(nullable = false)
+    private Boolean optional = false;
+
+    @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL)
+    private List<MemberAgree> memberAgreeList = new ArrayList<>();
 }

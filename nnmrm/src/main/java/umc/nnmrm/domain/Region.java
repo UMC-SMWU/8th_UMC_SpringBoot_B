@@ -1,26 +1,26 @@
 package umc.nnmrm.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import umc.nnmrm.domain.common.BaseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Region {
+@AllArgsConstructor
+public class Region extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30)
-    private String regionName;
+    @Column(nullable = false, length = 20)
+    private String name;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
-    private List<Store> stores;
-
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
-    private List<User> users;
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    private List<Store> storeList = new ArrayList<>();
 }

@@ -3,21 +3,26 @@ package umc.nnmrm.domain.mapping;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.nnmrm.domain.FoodCategory;
-import umc.nnmrm.domain.User;
+import umc.nnmrm.domain.Member;
+import umc.nnmrm.domain.common.BaseEntity;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberPreferredFood {
+@AllArgsConstructor
+public class MemberPrefer extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "food_category_id", nullable = false)
+    @JoinColumn(name = "category_id")
     private FoodCategory foodCategory;
+
 }

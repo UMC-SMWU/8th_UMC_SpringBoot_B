@@ -3,34 +3,33 @@ package umc.nnmrm.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.nnmrm.domain.common.BaseEntity;
-import umc.nnmrm.domain.User;
-import umc.nnmrm.domain.Store;
-import umc.nnmrm.domain.enums.MissionStatus;
-import umc.nnmrm.domain.enums.RewardType;
+import umc.nnmrm.domain.mapping.MemberMission;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Mission extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long requiredAmount = 0L;;
+    @Column(nullable = false)
+    private Integer reward;
 
-    @Enumerated(EnumType.STRING)
-    private RewardType rewardType;
+    @Column(nullable = false)
+    private LocalDate deadline;
 
-    private float rewardAmount = 0.0f;
+    @Column(nullable = false, length = 100)
+    private String missionSpec;
 
-    @Enumerated(EnumType.STRING)
-    private MissionStatus status = MissionStatus.INCOMPLETE;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
-    private Store store;
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissions = new ArrayList<>();
 }
