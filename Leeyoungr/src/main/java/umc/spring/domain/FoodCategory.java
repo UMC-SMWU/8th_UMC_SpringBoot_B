@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
-import umc.spring.domain.mapping.UserPrefer;
+import umc.spring.domain.mapping.MemberPrefer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,5 +25,5 @@ public class FoodCategory extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
-    private List<UserPrefer> userPreferList = new ArrayList<>();
+    private List<MemberPrefer> memberPreferList = new ArrayList<>();
 }

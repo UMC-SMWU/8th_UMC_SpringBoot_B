@@ -1,7 +1,9 @@
-package umc.spring.domain;
+package umc.spring.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.spring.domain.Member;
+import umc.spring.domain.Terms;
 import umc.spring.domain.common.BaseEntity;
 
 @Entity
@@ -9,23 +11,17 @@ import umc.spring.domain.common.BaseEntity;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Review extends BaseEntity {
+public class MemberAgree extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String body;
-
-    @Column(nullable = false)
-    private Float score;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
-    private Store store;
-
+    @JoinColumn(name = "terms_id")
+    private Terms terms;
 }
