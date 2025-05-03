@@ -6,7 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import umc.nnmrm.dto.ReviewResponseDto;
+import umc.nnmrm.service.MissionService.MissionQueryService;
 import umc.nnmrm.service.MemberMissionService.MemberMissionQueryService;
+import umc.nnmrm.service.ReviewService.ReviewService;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -17,22 +20,63 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner testMemberMission(ApplicationContext context) {
+	public CommandLineRunner run(ApplicationContext context) {
 		return args -> {
-			var missionService = context.getBean(MemberMissionQueryService.class);
-
-			Long memberId = 1L;
-			String cursor = null;
-			int limit = 15;
-
-			// 쿼리 메서드 호출 및 쿼리 문자열과 파라미터 출력
-			System.out.println("Executing findStoresByNameAndScore with parameters:");
-			System.out.println("memberId: " + memberId);
-			System.out.println("cursor: " + cursor);
-			System.out.println("limit: " + limit);
-
-			missionService.getMemberMissions(memberId, cursor, limit).forEach(System.out::println);;
-
+			// 테스트 실행 순차 제어
+			testMemberMission(context);
+			testReviewWrite(context);
+			testAvailableMissions(context);
 		};
+	}
+
+	public void testMemberMission(ApplicationContext context) {
+		var missionService = context.getBean(MemberMissionQueryService.class);
+
+		Long memberId = 1L;
+		String cursor = null;
+		int limit = 15;
+
+		System.out.println("Executing findStoresByNameAndScore with parameters:");
+		System.out.println("memberId: " + memberId);
+		System.out.println("cursor: " + cursor);
+		System.out.println("limit: " + limit);
+
+		missionService.getMemberMissions(memberId, cursor, limit).forEach(System.out::println);
+
+	}
+
+	public void testReviewWrite(ApplicationContext context) {
+		var reviewService = context.getBean(ReviewService.class);
+
+		Long memberId = 1L;
+		Long storeId = 1L;
+		Float score = 4.5f;
+		String body = "이 가게 진짜 맛집이에요. 또 갈래요!";
+
+		System.out.println("Executing writeReview with parameters:");
+		System.out.println("memberId: " + memberId);
+		System.out.println("storeId: " + storeId);
+		System.out.println("score: " + score);
+		System.out.println("body: " + body);
+
+		ReviewResponseDto result = reviewService.writeReview(memberId, storeId, score, body);
+		System.out.println("리뷰 저장 완료! \n" + result);
+	}
+
+	public void testAvailableMissions(ApplicationContext context) {
+		var homeService = context.getBean(MissionQueryService.class);
+
+		Long memberId = 1L;
+		Long regionId = 1L;
+		String cursor = null;
+		int limit = 15;
+
+		System.out.println("Executing getAvailableMissions with parameters:");
+		System.out.println("memberId: " + memberId);
+		System.out.println("regionId: " + regionId);
+		System.out.println("cursor: " + cursor);
+		System.out.println("limit: " + limit);
+
+		homeService.getAvailableMissions(memberId, regionId, cursor, limit).forEach(System.out::println);
 	}
 }

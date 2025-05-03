@@ -22,6 +22,8 @@ public class QReview extends EntityPathBase<Review> {
 
     public static final QReview review = new QReview("review");
 
+    public final StringPath body = createString("body");
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final QMember member;
@@ -29,8 +31,6 @@ public class QReview extends EntityPathBase<Review> {
     public final NumberPath<Float> score = createNumber("score", Float.class);
 
     public final QStore store;
-
-    public final StringPath title = createString("title");
 
     public QReview(String variable) {
         this(Review.class, forVariable(variable), INITS);
