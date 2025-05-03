@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import umc.nnmrm.dto.ReviewResponseDto;
+import umc.nnmrm.service.MemberService.MemberQueryService;
 import umc.nnmrm.service.MissionService.MissionQueryService;
 import umc.nnmrm.service.MemberMissionService.MemberMissionQueryService;
 import umc.nnmrm.service.ReviewService.ReviewService;
@@ -26,6 +27,7 @@ public class Application {
 			testMemberMission(context);
 			testReviewWrite(context);
 			testAvailableMissions(context);
+			testMyPageInfo(context);
 		};
 	}
 
@@ -78,5 +80,17 @@ public class Application {
 		System.out.println("limit: " + limit);
 
 		homeService.getAvailableMissions(memberId, regionId, cursor, limit).forEach(System.out::println);
+	}
+
+
+	public void testMyPageInfo(ApplicationContext context) {
+		var myPageService = context.getBean(MemberQueryService.class);
+
+		Long memberId = 1L;
+
+		System.out.println("Executing getMyPageInfo with memberId = " + memberId);
+
+		var result = myPageService.getMyPageInfo(memberId);
+		System.out.println("해당 멤버의 마이페이지 정보 조회 \n" + result);
 	}
 }

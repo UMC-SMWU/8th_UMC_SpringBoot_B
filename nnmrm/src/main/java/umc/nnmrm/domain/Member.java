@@ -31,6 +31,9 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 40)
     private String address;
 
+    @Column(length = 20)
+    private String phoneNum;
+
     @Column(nullable = false, length = 40)
     private String specAddress;
 
