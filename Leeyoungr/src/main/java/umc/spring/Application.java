@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import umc.spring.domain.Review;
 import umc.spring.service.MemberMissionService.MemberMissionService;
+import umc.spring.service.MemberService.MemberService;
 import umc.spring.service.StoreService.StoreQueryService;
 import umc.spring.service.ReviewService.ReviewService;
+import umc.spring.web.dto.MyPageInfoDto;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -55,6 +57,11 @@ public class Application {
 			Review newReview = reviewService.createReview(memberId, storeId, body, reviewScore);
 			System.out.println("New Review created:");
 			System.out.println(newReview);
+
+			MemberService memberService = context.getBean(MemberService.class);
+			MyPageInfoDto myPageInfo = memberService.getMyPageInfo(memberId);
+			System.out.println("\nExecuting MyPageInfo:");
+			System.out.println(myPageInfo);
 		};
 	}
 }
