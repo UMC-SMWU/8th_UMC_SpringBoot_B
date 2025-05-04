@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import umc.spring.service.MemberMissionService.MemberMissionService;
 import umc.spring.service.StoreService.StoreQueryService;
 
 @SpringBootApplication
@@ -31,6 +32,16 @@ public class Application {
 			System.out.println("Score: " + score);
 
 			storeService.findStoresByNameAndScore(name, score)
+					.forEach(System.out::println);
+
+			MemberMissionService memberMissionService = context.getBean(MemberMissionService.class);
+			Long memberId = 1L;
+			Long cursorId = null;
+			int limit = 10;
+			System.out.println("\nExecuting getMemberMissions with parameters:");
+			System.out.println("memberId: " + memberId + ", cursorId: " + cursorId + ", limit: " + limit);
+
+			memberMissionService.getMemberMissions(memberId, cursorId, limit)
 					.forEach(System.out::println);
 		};
 	}
