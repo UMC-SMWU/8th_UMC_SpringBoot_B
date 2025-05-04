@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import umc.spring.domain.Review;
 import umc.spring.service.MemberMissionService.MemberMissionService;
 import umc.spring.service.StoreService.StoreQueryService;
+import umc.spring.service.ReviewService.ReviewService;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -43,6 +45,16 @@ public class Application {
 
 			memberMissionService.getMemberMissions(memberId, cursorId, limit)
 					.forEach(System.out::println);
+
+			ReviewService reviewService = context.getBean(ReviewService.class);
+			Long storeId = 1L;
+			String body = "맛있어요!";
+			Float reviewScore = 4.5f;
+
+			System.out.println("\nCreating dummy review...");
+			Review newReview = reviewService.createReview(memberId, storeId, body, reviewScore);
+			System.out.println("New Review created:");
+			System.out.println(newReview);
 		};
 	}
 }

@@ -28,4 +28,15 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", body='" + body + '\'' +
+                ", score=" + score +
+                ", memberId=" + (member != null ? member.getId() : "null") +
+                ", storeId=" + (store != null ? store.getId() : "null") +
+                '}';
+    }
+
 }
