@@ -9,9 +9,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import umc.spring.domain.Review;
 import umc.spring.service.MemberMissionService.MemberMissionService;
 import umc.spring.service.MemberService.MemberService;
+import umc.spring.service.MissionService.MissionService;
 import umc.spring.service.StoreService.StoreQueryService;
 import umc.spring.service.ReviewService.ReviewService;
+import umc.spring.web.dto.HomeMissionDto;
 import umc.spring.web.dto.MyPageInfoDto;
+
+import java.util.List;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -62,6 +66,15 @@ public class Application {
 			MyPageInfoDto myPageInfo = memberService.getMyPageInfo(memberId);
 			System.out.println("\nExecuting MyPageInfo:");
 			System.out.println(myPageInfo);
+
+			MissionService missionService = context.getBean(MissionService.class);
+			String regionName = "서울";
+
+			System.out.println("\nExecuting getMissionsByRegion with parameters:");
+			System.out.println("regionName: " + regionName + ", cursorId: " + cursorId + ", limit: " + limit);
+
+			List<HomeMissionDto> homeMDtos = missionService.getMissionsByRegion(memberId, regionName, cursorId, limit);
+			homeMDtos.forEach(System.out::println);
 		};
 	}
 }
