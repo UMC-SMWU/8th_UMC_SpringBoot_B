@@ -2,8 +2,7 @@ package umc.spring.repository.MemberMissionRepository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 import umc.spring.domain.enums.MemberMissionStatus;
 import umc.spring.web.dto.MemberMissionDto;
 
@@ -16,9 +15,8 @@ import java.util.List;
 
 import static com.querydsl.core.types.Projections.constructor;
 
-@Service
+@Repository
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class MemberMissionRepositoryImpl implements MemberMissionRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 
