@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.nnmrm.domain.Member;
 import umc.nnmrm.domain.Review;
 import umc.nnmrm.domain.Store;
-import umc.nnmrm.dto.ReviewResponseDto;
+import umc.nnmrm.web.dto.Review.ReviewResponseDto;
 import umc.nnmrm.repository.MemberRepository.MemberRepository;
 import umc.nnmrm.repository.ReviewRepository.ReviewRepository;
 import umc.nnmrm.repository.StoreRepository.StoreRepository;

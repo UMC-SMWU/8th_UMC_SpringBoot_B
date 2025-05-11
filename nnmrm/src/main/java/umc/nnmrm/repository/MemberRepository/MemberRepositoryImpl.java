@@ -6,7 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import umc.nnmrm.domain.QMember;
-import umc.nnmrm.dto.MyPageInfoDto;
+import umc.nnmrm.web.dto.Member.MyPageInfoDto;
 
 @Repository
 @RequiredArgsConstructor

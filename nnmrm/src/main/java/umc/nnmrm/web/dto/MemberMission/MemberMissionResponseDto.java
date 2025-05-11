@@ -1,9 +1,8 @@
-package umc.nnmrm.dto;
+package umc.nnmrm.web.dto.MemberMission;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import umc.nnmrm.domain.enums.MissionStatus;
 
 import java.time.LocalDateTime;
 

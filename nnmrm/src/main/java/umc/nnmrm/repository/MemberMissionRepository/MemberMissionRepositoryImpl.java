@@ -1,7 +1,6 @@
 package umc.nnmrm.repository.MemberMissionRepository;
 
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,7 @@ import umc.nnmrm.domain.QMission;
 import umc.nnmrm.domain.QStore;
 import umc.nnmrm.domain.enums.MissionStatus;
 import umc.nnmrm.domain.mapping.QMemberMission;
-import umc.nnmrm.dto.MemberMissionResponseDto;
+import umc.nnmrm.web.dto.MemberMission.MemberMissionResponseDto;
 
 import java.util.List;
 
