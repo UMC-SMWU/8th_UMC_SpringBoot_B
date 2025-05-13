@@ -3,7 +3,7 @@ package umc.nnmrm.service.MissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.nnmrm.dto.HomeResponseDto;
+import umc.nnmrm.web.dto.Mission.HomeResponseDto;
 import umc.nnmrm.repository.MissionRepository.MissionRepository;
 
 import java.util.List;

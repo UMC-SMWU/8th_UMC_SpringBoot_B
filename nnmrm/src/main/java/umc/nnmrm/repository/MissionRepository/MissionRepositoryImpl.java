@@ -10,7 +10,7 @@ import umc.nnmrm.domain.QMission;
 import umc.nnmrm.domain.QRegion;
 import umc.nnmrm.domain.QStore;
 import umc.nnmrm.domain.mapping.QMemberMission;
-import umc.nnmrm.dto.HomeResponseDto;
+import umc.nnmrm.web.dto.Mission.HomeResponseDto;
 
 import java.util.List;
 

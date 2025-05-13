@@ -2,8 +2,7 @@ package umc.nnmrm.service.MemberMissionService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import umc.nnmrm.dto.MemberMissionResponseDto;
+import umc.nnmrm.web.dto.MemberMission.MemberMissionResponseDto;
 import umc.nnmrm.repository.MemberMissionRepository.MemberMissionRepository;
 
 import java.util.List;

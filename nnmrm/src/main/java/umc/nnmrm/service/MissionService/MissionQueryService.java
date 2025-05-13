@@ -1,6 +1,6 @@
 package umc.nnmrm.service.MissionService;
 
-import umc.nnmrm.dto.HomeResponseDto;
+import umc.nnmrm.web.dto.Mission.HomeResponseDto;
 
 import java.util.List;
 

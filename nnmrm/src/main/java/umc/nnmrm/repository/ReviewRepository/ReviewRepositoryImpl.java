@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import umc.nnmrm.domain.QMember;
 import umc.nnmrm.domain.QReview;
 import umc.nnmrm.domain.QStore;
-import umc.nnmrm.dto.ReviewResponseDto;
+import umc.nnmrm.web.dto.Review.ReviewResponseDto;
 
 @Repository
 @RequiredArgsConstructor
