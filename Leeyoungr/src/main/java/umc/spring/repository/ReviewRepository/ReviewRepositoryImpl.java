@@ -5,9 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import umc.spring.domain.*;
 
-import java.time.LocalDateTime;
-
-
 @Repository
 @RequiredArgsConstructor
 public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
