@@ -3,7 +3,7 @@ package umc.nnmrm.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.nnmrm.dto.MyPageInfoDto;
+import umc.nnmrm.web.dto.Member.MyPageInfoDto;
 import umc.nnmrm.repository.MemberRepository.MemberRepository;
 
 @Service

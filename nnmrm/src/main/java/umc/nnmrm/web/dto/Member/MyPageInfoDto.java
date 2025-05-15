@@ -1,4 +1,4 @@
-package umc.nnmrm.dto;
+package umc.nnmrm.web.dto.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
