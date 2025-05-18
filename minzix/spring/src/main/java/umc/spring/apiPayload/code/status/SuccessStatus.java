@@ -3,8 +3,7 @@ package umc.spring.apiPayload.code.status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-import umc.spring.apiPayload.code.BaseCode;
-import umc.spring.apiPayload.code.ReasonDTO;
+import umc.spring.apiPayload.code.dto.ReasonDTO;
 
 @Getter
 @AllArgsConstructor
@@ -25,7 +24,6 @@ public enum SuccessStatus implements BaseCode {
                 .isSuccess(true)
                 .build();
     }
-
     @Override
     public ReasonDTO getReasonHttpStatus() {
         return ReasonDTO.builder()
