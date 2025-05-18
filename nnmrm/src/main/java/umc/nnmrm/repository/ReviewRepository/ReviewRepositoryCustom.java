@@ -1,7 +1,7 @@
 package umc.nnmrm.repository.ReviewRepository;
 
-import umc.nnmrm.web.dto.Review.ReviewResponseDto;
+import umc.nnmrm.web.dto.Review.ReviewQueryResponseDTO;
 
 public interface ReviewRepositoryCustom {
-    ReviewResponseDto findReviewWithMemberAndStore(Long reviewId);
+    ReviewQueryResponseDTO findReviewWithMemberAndStore(Long reviewId);
 }
