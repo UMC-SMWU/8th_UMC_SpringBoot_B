@@ -32,6 +32,12 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
                 () -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND)
         );
 
+        boolean isMemberMissionExist = memberMissionRepository.existsByMemberAndMission(member, mission);
+
+        if (isMemberMissionExist) {
+            throw new MissionHandler(ErrorStatus.MEMBER_MISSION_ALREADY_EXIST);
+        }
+
         MemberMission memberMission = MemberMissionConverter.toMemberMission(
                 request,
                 mission,
