@@ -1,4 +1,4 @@
-package umc.spring.service.MissionService;
+package umc.spring.service.MissionQueryService;
 
 import umc.spring.dto.MissionList.MissionListDto;
 
