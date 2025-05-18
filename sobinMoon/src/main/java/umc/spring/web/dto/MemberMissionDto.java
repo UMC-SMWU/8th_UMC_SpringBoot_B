@@ -9,6 +9,8 @@ import umc.spring.domain.enums.MemberMissionStatus;
 @AllArgsConstructor
 @ToString
 public class MemberMissionDto {
+
+
     private Long memberMissionId;
     private MemberMissionStatus missionStatus;
     private Integer reward;
