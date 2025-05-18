@@ -2,6 +2,7 @@ package umc.nnmrm.web.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.nnmrm.apiPayload.ApiResponse;
 import umc.nnmrm.service.MissionService.MissionCommandService;
@@ -12,6 +13,7 @@ import umc.nnmrm.web.dto.Mission.MissionResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/stores")
 public class MissionController {
 

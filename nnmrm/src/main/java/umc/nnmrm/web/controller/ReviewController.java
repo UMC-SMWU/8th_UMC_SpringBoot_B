@@ -2,6 +2,7 @@ package umc.nnmrm.web.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.nnmrm.apiPayload.ApiResponse;
 import umc.nnmrm.service.ReviewService.ReviewService;
@@ -11,6 +12,7 @@ import umc.nnmrm.web.dto.Review.ReviewResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/stores")
 public class ReviewController {
 
