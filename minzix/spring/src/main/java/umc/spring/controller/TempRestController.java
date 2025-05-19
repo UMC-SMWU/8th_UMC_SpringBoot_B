@@ -10,20 +10,17 @@ import umc.spring.converter.TempConverter;
 import umc.spring.dto.temp.TempResponse;
 import umc.spring.service.TempService.TempQueryService;
 
+
 @RestController
 @RequestMapping("/temp")
 @RequiredArgsConstructor
 public class TempRestController {
 
     private final TempQueryService tempQueryService;
-
-
     @GetMapping("/test")
     public ApiResponse<TempResponse.TempTestDTO> testAPI(){
-
         return ApiResponse.onSuccess(TempConverter.toTempTestDTO());
     }
-
     @GetMapping("/exception")
     public ApiResponse<TempResponse.TempExceptionDTO> exceptionAPI(@RequestParam Integer flag){
         tempQueryService.CheckFlag(flag);

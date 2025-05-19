@@ -1,7 +1,9 @@
-package umc.spring.apiPayload.code.exception;
+package umc.spring.apiPayload.code.exception.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import umc.spring.apiPayload.code.status.BaseErrorCode;
+import umc.spring.apiPayload.code.dto.ErrorReasonDTO;
 
 @Getter
 @AllArgsConstructor
@@ -17,3 +19,5 @@ public class GeneralException extends RuntimeException {
         return this.code.getReasonHttpStatus();
     }
 }
+
+

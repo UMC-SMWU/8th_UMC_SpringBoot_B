@@ -20,7 +20,6 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
                                 MemberInfoDto.class,
                                 member.name,
                                 member.email,
-//                                member.phoneNum,
                                 member.point
                         )
                 )
