@@ -1,4 +1,4 @@
-package umc.spring.common.annotation;
+package umc.spring.validation.annotation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

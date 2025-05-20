@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
-import umc.spring.common.annotation.ExistStore;
+import umc.spring.validation.annotation.ExistStore;
 import umc.spring.converter.StoreConverter;
 import umc.spring.domain.Review;
 import umc.spring.dto.Store.StoreRequestDTO;
@@ -48,13 +48,10 @@ public class StoreController { // StoreRestController
             @ExistStore @PathVariable(name = "storeId") Long storeId,
             @RequestParam(name = "page") Integer page) {
 
-        // 1. 서비스 계층에서 리뷰 목록 받아오기
         Page<Review> reviewList = storeService.getReviewList(storeId, page);
 
-        // 2. 리뷰 목록을 DTO로 변환
         StoreResponseDTO.ReviewPreViewListDTO responseDTO = StoreConverter.reviewPreViewListDTO(reviewList);
 
-        // 3. ApiResponse로 감싸서 반환
         return ApiResponse.onSuccess(responseDTO);
     }
 }
