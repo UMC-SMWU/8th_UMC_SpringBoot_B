@@ -15,6 +15,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import umc.spring.apiPayload.ApiResponse;
+import umc.spring.apiPayload.code.dto.ErrorReasonDTO;
+import umc.spring.apiPayload.code.exception.handler.GeneralException;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 
 import java.util.LinkedHashMap;

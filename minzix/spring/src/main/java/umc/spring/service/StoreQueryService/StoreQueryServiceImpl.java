@@ -1,4 +1,4 @@
-package umc.spring.service.StoreService;
+package umc.spring.service.StoreQueryService;
 
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;

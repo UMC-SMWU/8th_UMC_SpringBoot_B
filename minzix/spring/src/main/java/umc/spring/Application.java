@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import umc.spring.dto.Member.MemberInfoDto;
 import umc.spring.service.MemberService.MemberQueryService;
-import umc.spring.service.MissionService.MissionQueryService;
+import umc.spring.service.MissionQueryService.MissionQueryService;
 import umc.spring.service.ReviewService.ReviewService;
-import umc.spring.service.StoreService.StoreQueryService;
+import umc.spring.service.StoreQueryService.StoreQueryService;
 import umc.spring.service.MemberMissionService.MemberMissionService;
 
 @SpringBootApplication
@@ -50,22 +50,22 @@ public class Application {
 					.forEach(System.out::println);
 
 			// ReviewService 콘솔 로그 출력용
-			ReviewService reviewService = context.getBean(ReviewService.class);
-			reviewService.addReview(1L, 1L, 5, "분위기가 좋았어요!", "https://img.url/sample.jpg");
+//			ReviewService reviewService = context.getBean(ReviewService.class);
+//			reviewService.addReview(1L, 1L, 5, "분위기가 좋았어요!", "https://img.url/sample.jpg");
 
 			// MissionService 콘솔 로그 출력용
-			MissionQueryService missionQueryService = context.getBean(MissionQueryService.class);
-			missionQueryService.getMissionList("서울", null, 5);
+//			MissionQueryService missionQueryService = context.getBean(MissionQueryService.class);
+//			missionQueryService.getMissionList("서울", null, 5);
 
 			// MemberQueryService 테스트 추가
-			MemberQueryService memberQueryService = context.getBean(MemberQueryService.class);
-			Long userIdForTest = 1L;
+//			MemberQueryService memberQueryService = context.getBean(MemberQueryService.class);
+//			Long userIdForTest = 1L;
 
-			System.out.println("\nExecuting findUserInfoById with parameter:");
-			System.out.println("userId: " + userIdForTest);
-
-			MemberInfoDto memberInfo = memberQueryService.getUserInfo(userIdForTest);
-			System.out.println("MemberInfoDto: " + memberInfo);
+//			System.out.println("\nExecuting findUserInfoById with parameter:");
+//			System.out.println("userId: " + userIdForTest);
+//
+//			MemberInfoDto memberInfo = memberQueryService.getUserInfo(userIdForTest);
+//			System.out.println("MemberInfoDto: " + memberInfo);
 
 		};
 
