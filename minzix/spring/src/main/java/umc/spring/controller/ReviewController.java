@@ -1,5 +1,6 @@
 package umc.spring.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -26,6 +27,7 @@ public class ReviewController {
     }
 
 
+    @Operation(summary = "내가 작성한 리뷰 목록 조회 (페이지 1부터 시작)", description = "memberId에 해당하는 리뷰 목록을 1페이지부터 조회합니다.")
     @GetMapping("/my")
     public ApiResponse<ReviewResponseDTO.MyReviewListDTO> getMyReviews(
             @RequestParam Long memberId,

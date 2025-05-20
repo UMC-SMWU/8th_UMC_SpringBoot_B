@@ -34,7 +34,11 @@ public enum ErrorStatus implements BaseErrorCode {
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "Mission4001", "해당 미션을 찾을 수 없습니다."),
 
     // FoodCategory 관련 에러
-    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODCATEGORY4001", "해당 음식 카테고리를 찾을 수 없습니다.");
+    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODCATEGORY4001", "해당 음식 카테고리를 찾을 수 없습니다."),
+
+    // Paging 관련 에러
+    INVALID_PAGE_FORMAT(HttpStatus.BAD_REQUEST, "PAGE4001", "페이지 번호 형식이 잘못되었습니다."),
+    PAGE_LESS_THAN_ONE(HttpStatus.BAD_REQUEST, "PAGE4002", "페이지 번호는 1 이상이어야 합니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
