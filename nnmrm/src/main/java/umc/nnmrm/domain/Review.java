@@ -2,6 +2,7 @@ package umc.nnmrm.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.nnmrm.domain.common.BaseEntity;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Review {
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

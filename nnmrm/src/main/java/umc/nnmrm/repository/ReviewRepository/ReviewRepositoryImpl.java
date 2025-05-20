@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import umc.nnmrm.domain.QMember;
 import umc.nnmrm.domain.QReview;
 import umc.nnmrm.domain.QStore;
-import umc.nnmrm.web.dto.Review.ReviewResponseDto;
+import umc.nnmrm.web.dto.Review.ReviewQueryResponseDTO;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,9 +19,9 @@ public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
     QStore store = QStore.store;
 
     @Override
-    public ReviewResponseDto findReviewWithMemberAndStore(Long reviewId) {
+    public ReviewQueryResponseDTO findReviewWithMemberAndStore(Long reviewId) {
         return queryFactory
-                .select(Projections.constructor(ReviewResponseDto.class,
+                .select(Projections.constructor(ReviewQueryResponseDTO.class,
                         review.id,
                         member.name,
                         store.name,

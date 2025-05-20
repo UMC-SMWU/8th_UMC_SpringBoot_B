@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import umc.nnmrm.web.dto.Review.ReviewResponseDto;
+import umc.nnmrm.web.dto.Review.ReviewQueryResponseDTO;
 import umc.nnmrm.service.MemberService.MemberQueryService;
 import umc.nnmrm.service.MissionService.MissionQueryService;
 import umc.nnmrm.service.MemberMissionService.MemberMissionQueryService;
@@ -61,7 +61,7 @@ public class Application {
 		System.out.println("score: " + score);
 		System.out.println("body: " + body);
 
-		ReviewResponseDto result = reviewService.writeReview(memberId, storeId, score, body);
+		ReviewQueryResponseDTO result = reviewService.writeReview(memberId, storeId, score, body);
 		System.out.println("리뷰 저장 완료! \n" + result);
 	}
 

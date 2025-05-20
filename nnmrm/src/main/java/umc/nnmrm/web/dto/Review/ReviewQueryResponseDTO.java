@@ -1,13 +1,13 @@
 package umc.nnmrm.web.dto.Review;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
+@NoArgsConstructor
+@Builder
 @AllArgsConstructor
-public class ReviewResponseDto{
+public class ReviewQueryResponseDTO {
         private Long reviewId;
         private String memberName;
         private String storeName;
