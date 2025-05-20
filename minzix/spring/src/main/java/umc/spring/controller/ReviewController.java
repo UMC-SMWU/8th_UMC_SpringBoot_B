@@ -1,6 +1,8 @@
 package umc.spring.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
@@ -23,9 +25,13 @@ public class ReviewController {
         return ResponseEntity.ok(ApiResponse.onSuccess("리뷰 작성 완료"));
     }
 
+
     @GetMapping("/my")
-    public ApiResponse<List<ReviewResponseDTO.MyReviewDTO>> getMyReviews(@RequestParam Long memberId) {
-        List<ReviewResponseDTO.MyReviewDTO> result = reviewService.getMyReviews(memberId);
+    public ApiResponse<ReviewResponseDTO.MyReviewListDTO> getMyReviews(
+            @RequestParam Long memberId,
+            @PageableDefault(size = 10) Pageable pageable) {
+
+        ReviewResponseDTO.MyReviewListDTO result = reviewService.getMyReviews(memberId, pageable);
         return ApiResponse.onSuccess(result);
     }
 }

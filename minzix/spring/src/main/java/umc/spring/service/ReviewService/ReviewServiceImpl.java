@@ -2,6 +2,8 @@ package umc.spring.service.ReviewService;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import umc.spring.apiPayload.code.exception.handler.GeneralException;
 import umc.spring.apiPayload.code.status.ErrorStatus;
@@ -48,10 +50,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 
+
     @Override
-    public List<ReviewResponseDTO.MyReviewDTO> getMyReviews(Long memberId) {
-        return reviewRepository.findAllByMemberId(memberId).stream()
-                .map(ReviewConverter::toMyReviewDTO)
-                .collect(Collectors.toList());
+    public ReviewResponseDTO.MyReviewListDTO getMyReviews(Long memberId, Pageable pageable) {
+        Page<Review> reviewPage = reviewRepository.findAllByMemberId(memberId, pageable);
+        return ReviewConverter.toMyReviewListDTO(reviewPage);
     }
 }
