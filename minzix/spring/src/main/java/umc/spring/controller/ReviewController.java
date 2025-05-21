@@ -10,6 +10,7 @@ import umc.spring.apiPayload.ApiResponse;
 import umc.spring.dto.Review.ReviewRequestDTO;
 import umc.spring.dto.Review.ReviewResponseDTO;
 import umc.spring.service.ReviewService.ReviewService;
+import umc.spring.validation.annotation.ValidatedPage;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ReviewController {
     @GetMapping("/my")
     public ApiResponse<ReviewResponseDTO.MyReviewListDTO> getMyReviews(
             @RequestParam Long memberId,
-            @PageableDefault(size = 10) Pageable pageable) {
+            @ValidatedPage Pageable pageable) {
 
         ReviewResponseDTO.MyReviewListDTO result = reviewService.getMyReviews(memberId, pageable);
         return ApiResponse.onSuccess(result);

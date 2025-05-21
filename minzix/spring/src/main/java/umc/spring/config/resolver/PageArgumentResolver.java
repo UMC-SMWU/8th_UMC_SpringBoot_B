@@ -43,7 +43,7 @@ public class PageArgumentResolver implements HandlerMethodArgumentResolver {
                 throw new InvalidPageException(ErrorStatus.INVALID_PAGE_FORMAT);
             }
         } else {
-            page = 1;  // 기본 1페이지
+            page = 1;
         }
 
         return PageRequest.of(page - 1, DEFAULT_SIZE);
