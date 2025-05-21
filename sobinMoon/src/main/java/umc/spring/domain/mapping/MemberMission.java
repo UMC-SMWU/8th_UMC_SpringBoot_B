@@ -2,6 +2,7 @@ package umc.spring.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.common.BaseEntity;
@@ -19,7 +20,8 @@ public class MemberMission extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private MemberMissionStatus status;
+    @Builder.Default
+    private MemberMissionStatus status = MemberMissionStatus.CHALLENGING;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
