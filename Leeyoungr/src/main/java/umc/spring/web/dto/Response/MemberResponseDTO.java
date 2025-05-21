@@ -18,4 +18,14 @@ public class MemberResponseDTO {
         Long memberId;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CreateReviewResponseDTO{
+        Long reviewId;
+        LocalDateTime createdAt;
+    }
+
 }

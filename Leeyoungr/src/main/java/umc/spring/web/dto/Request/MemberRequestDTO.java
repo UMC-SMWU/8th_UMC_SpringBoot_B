@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import umc.spring.validation.annotation.ExistCategories;
+import umc.spring.validation.annotation.ExistStore;
 
 import java.util.List;
 
@@ -28,5 +29,15 @@ public class MemberRequestDTO {
         String specAddress;
         @ExistCategories
         List<Long> preferCategory;
+    }
+
+    @Getter
+    public static class ReviewDto{
+        @NotNull
+        @ExistStore
+        Long storeId;
+        String body;
+        @NotNull
+        Float score;
     }
 }
