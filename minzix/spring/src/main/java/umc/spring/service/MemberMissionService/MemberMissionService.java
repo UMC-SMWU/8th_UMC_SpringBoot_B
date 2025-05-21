@@ -11,4 +11,6 @@ public interface MemberMissionService {
 
     MemberMissionResponseDTO.InProgressMissionListDTO getInProgressMissions(Long memberId, Pageable pageable);
 
+    void completeMission(Long memberId, Long missionId);
+
 }

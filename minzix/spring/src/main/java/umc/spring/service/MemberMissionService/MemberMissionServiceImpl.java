@@ -3,8 +3,11 @@ package umc.spring.service.MemberMissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import umc.spring.apiPayload.code.exception.handler.MemberMissionHandler;
+import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.converter.MemberMissionConverter;
 import umc.spring.domain.enums.MissionStatus;
+import umc.spring.domain.mapping.MemberMission;
 import umc.spring.dto.memberMission.MemberMissionResponseDTO;
 import umc.spring.repository.MemberMissionRepository.MemberMissionRepository;
 
@@ -31,6 +34,19 @@ public class MemberMissionServiceImpl implements MemberMissionService {
         return MemberMissionConverter.toInProgressMissionListDTO(
                 memberMissionRepository.findAllByMemberIdAndMissionStatus(memberId, MissionStatus.CHALLENGING, pageable)
         );
+    }
+
+    @Override
+    public void completeMission(Long memberId, Long missionId) {
+        MemberMission memberMission = memberMissionRepository
+                .findByMemberIdAndMissionId(memberId, missionId)
+                .orElseThrow(() -> new MemberMissionHandler(ErrorStatus.MEMBER_MISSION_NOT_FOUND));
+
+        if (memberMission.getMissionStatus() == MissionStatus.COMPLETE) {
+            throw new MemberMissionHandler(ErrorStatus.MISSION_ALREADY_COMPLETE);
+        }
+
+        memberMission.changeStatusToComplete();
     }
 
 
