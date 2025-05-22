@@ -24,18 +24,13 @@ public class Store extends BaseEntity {
 
     private Float score;
 
-    private String category;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @Builder.Default
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
 
-
-    @Builder.Default
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 
