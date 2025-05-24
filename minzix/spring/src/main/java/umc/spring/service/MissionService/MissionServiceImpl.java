@@ -1,9 +1,11 @@
 package umc.spring.service.MissionService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import umc.spring.apiPayload.code.exception.handler.GeneralException;
 import umc.spring.apiPayload.code.status.ErrorStatus;
+import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
@@ -11,6 +13,7 @@ import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.dto.Mission.MissionJoinRequestDTO;
 import umc.spring.dto.Mission.MissionRequestDTO;
+import umc.spring.dto.Mission.MissionResponseDTO;
 import umc.spring.repository.MemberRepository.MemberRepository;
 import umc.spring.repository.MissionRepository.MissionRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
@@ -58,6 +61,14 @@ public class MissionServiceImpl implements MissionService {
 
         member.getMemberMissionList().add(memberMission);
         memberRepository.save(member); // cascade 설정으로 memberMission 저장됨
+    }
+
+
+    @Override
+    public MissionResponseDTO.MissionListDTO getMissionsByStore(Long storeId, Pageable pageable) {
+        return MissionConverter.toMissionListDTO(
+                missionRepository.findAllByStoreId(storeId, pageable)
+        );
     }
 
 }
