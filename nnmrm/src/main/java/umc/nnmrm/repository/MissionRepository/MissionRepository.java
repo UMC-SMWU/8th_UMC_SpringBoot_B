@@ -9,4 +9,5 @@ import umc.nnmrm.domain.Store;
 public interface MissionRepository extends JpaRepository<Mission, Long>, MissionRepositoryCustom {
     Page<Mission> findAllByStore(Store store, PageRequest pageRequest);
 
+
 }
