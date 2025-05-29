@@ -13,7 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.service.StoreService.StoreQueryService;
-import umc.study.web.dto.StoreResponseDTO;
+import umc.study.web.dto.ReviewPreViewListDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,8 +34,8 @@ public class StoreRestController {
     @Parameters({
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
-    public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId,@RequestParam(name = "page") Integer page){
-        StoreResponseDTO.ReviewPreViewListDTO reviewList = storeQueryService.getReviewList(storeId, page);
+    public ApiResponse<ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
+        ReviewPreViewListDTO reviewList = storeQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(reviewList);
     }
 }

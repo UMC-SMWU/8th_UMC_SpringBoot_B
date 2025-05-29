@@ -14,7 +14,7 @@ public class StoreConverter {
     public static ReviewPreViewDTO reviewPreViewDTO(Review review){
         return ReviewPreViewDTO.builder()
                 .id(review.getId())
-                .score(review.getScore())
+                .score(Math.round(review.getScore()))
                 .body(review.getBody())
                 .nickname(review.getMember().getName())
                 .createdAt(review.getCreatedAt().toLocalDate())
@@ -27,15 +27,7 @@ public class StoreConverter {
                 .collect(Collectors.toList());
 
         return ReviewPreViewListDTO.builder()
-                .reviews(reviewPreViewDTOList.stream()
-                        .map(dto -> StoreResponseDTO.ReviewPreViewDTO.builder()
-                                .id(dto.getId())
-                                .nickname(dto.getNickname())
-                                .score(dto.getScore())
-                                .body(dto.getBody())
-                                .createdAt(dto.getCreatedAt())
-                                .build())
-                        .collect(Collectors.toList()))
+                .reviewList(reviewPreViewDTOList)
                 .build();
     }
 
