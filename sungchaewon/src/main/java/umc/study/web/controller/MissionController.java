@@ -32,7 +32,7 @@ public class MissionController {
             @PathVariable Long storeId,
             @RequestParam @PageValidator Integer page) {
 
-        Pageable pageable = PageRequest.of(page, 10);
-        return ApiResponse.onSuccess(missionQueryService.getMissionsByStore(storeId, pageable)); // ✅ 인스턴스 호출
+        Pageable pageable = PageRequest.of(page - 1, 10);
+        return ApiResponse.onSuccess(missionQueryService.getMissionsByStore(storeId, pageable));
     }
 }

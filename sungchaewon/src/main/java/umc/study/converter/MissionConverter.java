@@ -25,7 +25,7 @@ public class MissionConverter {
                                         .id(mission.getId())
                                         .spec(mission.getMissionSpec())
                                         .reward(String.valueOf(mission.getReward()))
-                                        .status(String.valueOf(mission.getStatus()))
+                                        .status(mission.getStatus().name())
                                         .build()
                         ).collect(Collectors.toList())
                 )
