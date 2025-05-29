@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import umc.nnmrm.apiPayload.ApiResponse;
 import umc.nnmrm.converter.StoreConverter;
 import umc.nnmrm.domain.Review;
-import umc.nnmrm.service.ReviewService.StoreQueryService;
+import umc.nnmrm.service.StoreService.StoreQueryService;
 import umc.nnmrm.validation.annotation.ExistStore;
-import umc.nnmrm.web.dto.Review.StoreResponseDTO;
+import umc.nnmrm.web.dto.Store.StoreResponseDTO;
 
 @RestController
 @RequiredArgsConstructor

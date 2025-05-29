@@ -1,11 +1,15 @@
 package umc.nnmrm.service.ReviewService;
 
+import org.springframework.data.domain.Page;
+import umc.nnmrm.domain.Review;
 import umc.nnmrm.web.dto.Review.ReviewQueryResponseDTO;
-import umc.nnmrm.web.dto.Review.ReviewRequestDTO;
-import umc.nnmrm.web.dto.Review.ReviewResponseDTO;
+import umc.nnmrm.web.dto.Review.ReviewCreateRequestDTO;
+import umc.nnmrm.web.dto.Review.ReviewCreateResponseDTO;
 
 public interface ReviewService {
     ReviewQueryResponseDTO writeReview(Long memberId, Long storeId, Float score, String body);
 
-    ReviewResponseDTO createReview(Long storeId, ReviewRequestDTO requestDTO);
+    ReviewCreateResponseDTO createReview(Long storeId, ReviewCreateRequestDTO requestDTO);
+
+    Page<Review> getMyReviews(Long member, int page);
 }

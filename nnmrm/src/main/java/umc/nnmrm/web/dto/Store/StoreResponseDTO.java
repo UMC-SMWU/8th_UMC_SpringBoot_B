@@ -1,4 +1,4 @@
-package umc.nnmrm.web.dto.Review;
+package umc.nnmrm.web.dto.Store;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +34,29 @@ public class StoreResponseDTO {
         Float score;
         String body;
         LocalDate createdAt;
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class MissionPreviewDTO {
+        private Long missionId;
+        private String missionSpec;
+        private Integer reward;
+        private LocalDate deadline;
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class MissionPreviewListDTO {
+        private List<MissionPreviewDTO> missions;
+        private Integer listSize;
+        private Integer totalPage;
+        private Long totalElements;
+        private Boolean isFirst;
+        private Boolean isLast;
     }
 }

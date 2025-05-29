@@ -1,4 +1,4 @@
-package umc.nnmrm.service.ReviewService;
+package umc.nnmrm.service.StoreService;
 
 import org.springframework.data.domain.Page;
 import umc.nnmrm.domain.Review;
