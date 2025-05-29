@@ -43,5 +43,30 @@ public class StoreResponseDTO {
         LocalDate createdAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreviewListDTO {
+        List<MissionPreviewDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreviewDTO {
+        Long storeId;
+        String storeName;
+        Long missionId;
+        String missionSpec;
+        Integer reward;
+        LocalDate deadline;
+    }
 
 }

@@ -5,8 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring.domain.Mission;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
+import umc.spring.repository.MissionRepository.MissionRepository;
 import umc.spring.repository.ReviewRepository.ReviewRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
 
@@ -20,11 +22,15 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
+    private final MissionRepository missionRepository;
 
     @Override
     public Optional<Store> findStore(Long id) {
         return storeRepository.findById(id);
     }
+
+    @Override
+    public boolean isExistsById(Long id) {return storeRepository.existsById(id);}
 
     @Override
     public List<Store> findStoresByNameAndScore(String name, Float score) {
@@ -40,8 +46,16 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
         Store store = storeRepository.findById(StoreId).get();
 
-        Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
-        return StorePage;
+        Page<Review> storePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+        return storePage;
+    }
+
+    @Override
+    public Page<Mission> getMissionList(Long StoreId, Integer page) {
+        Store store = storeRepository.findById(StoreId).get();
+
+        Page<Mission> missionPage = missionRepository.findAllByStore(store,PageRequest.of(page, 10));
+        return missionPage;
     }
 
 }
