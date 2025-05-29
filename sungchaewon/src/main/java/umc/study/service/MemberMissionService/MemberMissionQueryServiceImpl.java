@@ -31,7 +31,7 @@ public class MemberMissionQueryServiceImpl implements MemberMissionQueryService 
             throw new IllegalArgumentException("해당 유저의 미션이 아닙니다.");
         }
 
-        memberMission.setStatus(MissionStatus.COMPLETE);
+        memberMission.changeStatus(MissionStatus.COMPLETE);
         memberMissionRepository.save(memberMission);
     }
 }
