@@ -2,6 +2,7 @@ package umc.study.web.dto;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -9,11 +10,11 @@ import java.time.LocalDate;
 @Getter
 public class MissionRequestDTO {
 
-    @NotNull(message = "미션 내용은 필수입니다.")
+    @NotBlank(message = "미션 내용은 필수입니다.")
     private String missionSpec;
 
-    @NotNull(message = "보상 내용은 필수입니다.")
-    private String reward;
+    @NotBlank(message = "보상 내용은 필수입니다.")
+    private Integer reward;
 
     @NotNull(message = "마감일은 필수입니다.")
     @Future(message = "마감일은 미래여야 합니다.")

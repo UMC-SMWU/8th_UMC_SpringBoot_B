@@ -13,7 +13,7 @@ import umc.study.domain.Member;
 import umc.study.domain.enums.mapping.MemberPrefer;
 import umc.study.repository.FoodCategoryRepository;
 import umc.study.repository.MemberRepository;
-import umc.study.web.dto.member.MemberRequestDTO;
+import umc.study.web.dto.MemberRequestDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

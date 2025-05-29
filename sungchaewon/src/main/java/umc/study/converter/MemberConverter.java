@@ -4,8 +4,8 @@ import umc.study.domain.Member;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.enums.MemberStatus;
 import umc.study.domain.enums.SocialType;
-import umc.study.web.dto.member.MemberRequestDTO;
-import umc.study.web.dto.member.MemberResponseDTO;
+import umc.study.web.dto.MemberRequestDTO;
+import umc.study.web.dto.MemberResponseDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

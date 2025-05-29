@@ -19,4 +19,5 @@ public class StoreRequestDTO {
 
     @NotNull(message = "지역 ID는 필수입니다.")
     private Long regionId;
+
 }
