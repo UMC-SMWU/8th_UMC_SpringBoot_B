@@ -35,8 +35,17 @@ public class Review extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String body;
 
+    @Column(length = 300)
+    private String ownerComment;
+
     // Lombok @Builder 사용 시 기본값 무시되므로, @Builder.Default로 명시해야 초기화 값 적용됨
     @Builder.Default
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewImage> reviewImageList = new ArrayList<>();
+
+    public List<String> getImageUrls() {
+        return reviewImageList.stream()
+                .map(ReviewImage::getImageUrl)
+                .toList();
+    }
 }
