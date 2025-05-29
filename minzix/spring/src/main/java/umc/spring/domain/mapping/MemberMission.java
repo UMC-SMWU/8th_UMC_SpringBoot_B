@@ -8,6 +8,10 @@ import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.MissionStatus;
 
 @Entity
+@Table(
+        name = "member_mission",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"member_id", "mission_id"})
+)
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,4 +33,9 @@ public class MemberMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id", nullable = false)
     private Mission mission;
+
+    public void changeStatusToComplete() {
+        this.missionStatus = MissionStatus.COMPLETE;
+    }
+
 }
