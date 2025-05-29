@@ -54,4 +54,28 @@ public class MemberResponseDTO {
         LocalDate createdAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChallengingMissionPreviewListDTO {
+        String status;
+        List<MemberResponseDTO.ChallengingMissionPreviewDTO> myMissionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChallengingMissionPreviewDTO {
+        Long memberMissionId;
+        String missionSpec;
+        Integer reward;
+        LocalDate deadline;
+    }
 }
