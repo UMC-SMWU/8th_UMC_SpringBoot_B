@@ -1,33 +1,23 @@
 package umc.study.converter;
 
-import umc.study.domain.Region;
 import umc.study.domain.Review;
 import umc.study.domain.Store;
-import umc.study.web.dto.StoreRequestDTO;
-import umc.study.web.dto.StoreResponseDTO;
 import umc.study.web.dto.ReviewPreViewDTO;
 import umc.study.web.dto.ReviewPreViewListDTO;
+import umc.study.web.dto.StoreResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StoreConverter {
 
-    public static Store toStore(StoreRequestDTO requestDTO, Region region) {
-        return Store.builder()
-                .name(requestDTO.getName())
-                .address(requestDTO.getAddress())
-                .score(requestDTO.getScore())
-                .category(requestDTO.getCategory())
-                .region(region)
-                .build();
-    }
-
     public static ReviewPreViewDTO reviewPreViewDTO(Review review){
         return ReviewPreViewDTO.builder()
                 .id(review.getId())
                 .score(review.getScore())
                 .body(review.getBody())
+                .nickname(review.getMember().getName())
+                .createdAt(review.getCreatedAt().toLocalDate())
                 .build();
     }
 
@@ -37,7 +27,24 @@ public class StoreConverter {
                 .collect(Collectors.toList());
 
         return ReviewPreViewListDTO.builder()
-                .reviews(reviewPreViewDTOList)
+                .reviews(reviewPreViewDTOList.stream()
+                        .map(dto -> StoreResponseDTO.ReviewPreViewDTO.builder()
+                                .id(dto.getId())
+                                .nickname(dto.getNickname())
+                                .score(dto.getScore())
+                                .body(dto.getBody())
+                                .createdAt(dto.getCreatedAt())
+                                .build())
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    public static StoreResponseDTO toStoreResponse(Store store) {
+        return StoreResponseDTO.builder()
+                .id(store.getId())
+                .name(store.getName())
+                .address(store.getAddress())
+                .category(store.getCategory())
                 .build();
     }
 }

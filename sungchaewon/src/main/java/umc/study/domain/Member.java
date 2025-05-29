@@ -30,8 +30,17 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 100)
+    private String encodedPassword;
+
     @Column(nullable = false, length = 20)
     private String name;
+
+    @Column(nullable = false, length = 50)
+    private String nickname;
+
+    @Column(nullable = false)
+    private Boolean isDeleted;
 
     @Column(nullable = false, length = 40)
     private String address;
@@ -78,4 +87,21 @@ public class Member extends BaseEntity {
     @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+    public static Member of(String encodedPassword, String name, String nickname, Boolean isDeleted,
+                            String address, String specAddress, Integer age,
+                            SocialType socialType, MemberStatus status, String email) {
+        return Member.builder()
+                .encodedPassword(encodedPassword)
+                .name(name)
+                .nickname(nickname)
+                .isDeleted(isDeleted)
+                .address(address)
+                .specAddress(specAddress)
+                .age(age)
+                .socialType(socialType)
+                .status(status)
+                .email(email)
+                .point(0)
+                .build();
+    }
 }

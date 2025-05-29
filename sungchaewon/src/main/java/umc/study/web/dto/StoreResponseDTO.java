@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.study.domain.Store;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Getter
 @Builder
 @NoArgsConstructor
@@ -24,5 +27,29 @@ public class StoreResponseDTO {
                 .address(store.getAddress())
                 .category(store.getCategory())
                 .build();
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ReviewPreViewListDTO {
+        List<ReviewPreViewDTO> reviewList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ReviewPreViewDTO {
+        String ownerNickname;
+        Float score;
+        String body;
+        LocalDate createdAt;
     }
 }

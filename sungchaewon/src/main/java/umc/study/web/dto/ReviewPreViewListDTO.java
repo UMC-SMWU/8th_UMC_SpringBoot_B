@@ -7,11 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import umc.study.domain.Review;
+import umc.study.web.dto.StoreResponseDTO.ReviewPreViewDTO;
+
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewPreViewListDTO {
 
-    private List<ReviewPreViewDTO> reviews;
+    private List<StoreResponseDTO.ReviewPreViewDTO> reviews;
 }

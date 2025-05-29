@@ -13,9 +13,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ReviewPreViewDTO {
     private Long id;
-    private MemberInfoDTO memberinfo;
+    private String nickname;
     private Float score;
     private String body;
     private LocalDate createdAt;
 }
-
