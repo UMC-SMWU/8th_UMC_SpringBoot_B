@@ -13,9 +13,8 @@ public class MissionService {
 
     private final MissionRepository missionRepository;
 
-    public List<Mission> getMissionsByMember(Long memberId, int page, int size) {
-        int offset = page * size;
-        return missionRepository.findMissionsByMember(memberId, size, offset);
+    public org.springframework.data.domain.Page<Mission> getMissionsByStore(Long storeId, org.springframework.data.domain.Pageable pageable) {
+        return missionRepository.findByStoreId(storeId, pageable);
     }
 
     public Mission getMissionOrThrow(Long missionId) {
