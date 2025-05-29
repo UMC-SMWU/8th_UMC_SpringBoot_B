@@ -1,4 +1,4 @@
-package umc.study.service;
+package umc.study.service.MissionService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,5 +16,10 @@ public class MissionService {
     public List<Mission> getMissionsByMember(Long memberId, int page, int size) {
         int offset = page * size;
         return missionRepository.findMissionsByMember(memberId, size, offset);
+    }
+
+    public Mission getMissionOrThrow(Long missionId) {
+        return missionRepository.findById(missionId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 미션을 찾을 수 없습니다: id=" + missionId));
     }
 }
