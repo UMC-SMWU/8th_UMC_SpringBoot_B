@@ -52,6 +52,30 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         return handleExceptionInternalArgs(e,HttpHeaders.EMPTY,ErrorStatus.valueOf("_BAD_REQUEST"),request,errors);
     }
 
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException e, WebRequest request) {
+
+        if (e.getMessage().contains("page")) {
+            return handleExceptionInternalConstraint(
+                    e,
+                    ErrorStatus.INVALID_PAGE,
+                    HttpHeaders.EMPTY,
+                    request
+            );
+        }
+
+        // 그 외는 서버 에러
+        return handleExceptionInternalFalse(
+                e,
+                ErrorStatus._INTERNAL_SERVER_ERROR,
+                HttpHeaders.EMPTY,
+                ErrorStatus._INTERNAL_SERVER_ERROR.getHttpStatus(),
+                request,
+                e.getMessage()
+        );
+    }
+
     @ExceptionHandler
     public ResponseEntity<Object> exception(Exception e, WebRequest request) {
         e.printStackTrace();
