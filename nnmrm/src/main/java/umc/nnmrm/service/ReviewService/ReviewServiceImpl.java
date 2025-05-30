@@ -1,6 +1,9 @@
 package umc.nnmrm.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.nnmrm.apiPayload.code.status.ErrorStatus;
@@ -14,8 +17,8 @@ import umc.nnmrm.web.dto.Review.ReviewQueryResponseDTO;
 import umc.nnmrm.repository.MemberRepository.MemberRepository;
 import umc.nnmrm.repository.ReviewRepository.ReviewRepository;
 import umc.nnmrm.repository.StoreRepository.StoreRepository;
-import umc.nnmrm.web.dto.Review.ReviewRequestDTO;
-import umc.nnmrm.web.dto.Review.ReviewResponseDTO;
+import umc.nnmrm.web.dto.Review.ReviewCreateRequestDTO;
+import umc.nnmrm.web.dto.Review.ReviewCreateResponseDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +54,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Transactional
-    public ReviewResponseDTO createReview(Long storeId, ReviewRequestDTO requestDTO) {
+    public ReviewCreateResponseDTO createReview(Long storeId, ReviewCreateRequestDTO requestDTO) {
 
         Member member = memberRepository.findById(1L)
                 .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
@@ -62,5 +65,11 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = ReviewConverter.toEntity(requestDTO, member, store);
 
         return ReviewConverter.fromEntity(reviewRepository.save(review));
+    }
+
+    @Override
+    public Page<Review> getMyReviews(Long member, int page) {
+        PageRequest pageRequest = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return reviewRepository.findAllByMember_Id(member, pageRequest);
     }
 }
