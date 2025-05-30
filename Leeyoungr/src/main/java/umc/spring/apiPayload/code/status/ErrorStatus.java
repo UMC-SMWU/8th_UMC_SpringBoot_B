@@ -30,7 +30,12 @@ public enum ErrorStatus implements BaseErrorCode {
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "음식 카테고리를 찾을 수 없습니다."),
 
     // Store Error
-    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "매장을 찾을 수 없습니다.");
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "매장을 찾을 수 없습니다."),
+
+    // Page inValid
+    PAGE_INVALID(HttpStatus.BAD_REQUEST,"PAGE4001","페이지 번호는 1 이상의 정수이어야 합니다.");
+
+
 
     private final HttpStatus httpStatus;
     private final String code;

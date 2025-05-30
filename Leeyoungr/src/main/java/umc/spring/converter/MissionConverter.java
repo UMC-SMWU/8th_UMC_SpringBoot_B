@@ -1,5 +1,6 @@
 package umc.spring.converter;
 
+import org.springframework.data.domain.Page;
 import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
 import umc.spring.web.dto.Request.StoreRequestDTO;
@@ -7,6 +8,7 @@ import umc.spring.web.dto.Response.StoreResponseDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class MissionConverter {
@@ -26,4 +28,32 @@ public class MissionConverter {
                 .deadline(LocalDate.parse(request.getDeadline()))
                 .build();
     }
+
+
+    public static StoreResponseDTO.MissionPreviewDTO toMissionPreviewDTO(Mission mission) {
+        return StoreResponseDTO.MissionPreviewDTO.builder()
+                .storeId(mission.getStore().getId())
+                .storeName(mission.getStore().getName())
+                .missionId(mission.getId())
+                .missionSpec(mission.getMissionSpec())
+                .reward(mission.getReward())
+                .deadline(mission.getDeadline())
+                .build();
+    }
+
+    public static StoreResponseDTO.MissionPreviewListDTO toMissionPreviewListDTO(Page<Mission> missionList) {
+        List<StoreResponseDTO.MissionPreviewDTO> missionPreviewDTOList = missionList.stream()
+                .map(MissionConverter::toMissionPreviewDTO).toList();
+
+        return StoreResponseDTO.MissionPreviewListDTO.builder()
+                .missionList(missionPreviewDTOList)
+                .listSize(missionPreviewDTOList.size())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .isFirst(missionList.isFirst())
+                .isLast(missionList.isLast())
+                .build();
+    }
+
+
 }
