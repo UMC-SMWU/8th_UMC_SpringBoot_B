@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReviewRequestDTO {
+public class ReviewCreateRequestDTO {
 
     @NotNull
     @Min(1)

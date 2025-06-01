@@ -1,6 +1,10 @@
 package umc.nnmrm.service.MemberMissionService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.nnmrm.apiPayload.code.status.ErrorStatus;
@@ -42,5 +46,13 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
                 .build();
 
         return MissionChallengeConverter.fromEntity(memberMissionRepository.save(memberMission));
+    }
+
+    @Override
+    public Page<Mission> getMyInProgressMissions(Long memberId, int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return memberMissionRepository
+                .findAllByMember_IdAndStatus(memberId, MissionStatus.CHALLENGING, pageable)
+                .map(MemberMission::getMission);
     }
 }
