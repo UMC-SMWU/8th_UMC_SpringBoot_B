@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.Role;
 import umc.spring.validation.annotation.ExistCategories;
 import umc.spring.validation.annotation.ExistStore;
@@ -25,13 +26,7 @@ public class MemberRequestDTO {
         @NotBlank
         String password;
         @NotNull
-        Integer gender;
-        @NotNull
-        Integer birthYear;
-        @NotNull
-        Integer birthMonth;
-        @NotNull
-        Integer birthDay;
+        Gender gender;
         @Size(min = 5, max = 12)
         String address;
         @Size(min = 5, max = 12)
@@ -51,5 +46,16 @@ public class MemberRequestDTO {
         String body;
         @NotNull
         Float score;
+    }
+
+    @Getter
+    @Setter
+    public static class LoginRequestDTO{
+        @NotBlank(message = "이메일은 필수입니다.")
+        @Email(message = "올바른 이메일 형식이어야 합니다.")
+        private String email;
+
+        @NotBlank(message = "패스워드는 필수입니다.")
+        private String password;
     }
 }
