@@ -1,9 +1,12 @@
 package umc.study.web.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
+import umc.study.domain.enums.Role;
 import umc.study.validation.annotation.ExistCategories;
 
 import java.util.List;
@@ -11,26 +14,40 @@ import java.util.List;
 public class MemberRequestDTO {
 
     @Getter
-    public static class JoinDto{
-        @NotBlank(message = "공백일 수는 없습니다.")
+    @Setter   // thymeleaf에서 사용하기 위해 추가
+    public static class JoinDto {
+        @NotBlank
         String name;
-        @NotNull(message = "널이어서는 안 됩니다.")
+        @NotBlank
+        @Email
+        String email;    // 이메일 필드 추가
+        @NotBlank
+        String password;    // 비밀번호 필드 추가
+        @NotNull
         Integer gender;
-        @NotNull(message = "널이어서는 안 됩니다.")
+        @NotNull
         Integer birthYear;
-        @NotNull(message = "널이어서는 안 됩니다.")
+        @NotNull
         Integer birthMonth;
-        @NotNull(message = "널이어서는 안 됩니다.")
+        @NotNull
         Integer birthDay;
-        @NotBlank(message = "공백일 수 없습니다.")
-        String email; //누락되어 데이터베이스 연동 실패했었음
         @Size(min = 5, max = 12)
         String address;
         @Size(min = 5, max = 12)
         String specAddress;
-        //화면 렌더링 시 음식 카테고리를 조회하는 API를 호출하고,
-        // 그 API의 결과에서 음식 카테고리의 id값을 프론트엔드가 넘겨준다는 것을 전제로 한 것.
-        @ExistCategories(message = "FOOD_CATEGORY_NOT_FOUND")
         List<Long> preferCategory;
+        @NotNull
+        Role role;    // 역할 필드 추가
+    }
+
+    @Getter
+    @Setter
+    public static class LoginRequestDTO{
+        @NotBlank(message = "이메일은 필수입니다.")
+        @Email(message = "올바른 이메일 형식이어야 합니다.")
+        private String email;
+
+        @NotBlank(message = "패스워드는 필수입니다.")
+        private String password;
     }
 }
