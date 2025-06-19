@@ -42,7 +42,13 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Mission complete 관련 에러
     MEMBER_MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MM404", "해당 멤버의 미션이 존재하지 않습니다."),
-    MISSION_ALREADY_COMPLETE(HttpStatus.BAD_REQUEST, "MM400", "이미 완료된 미션입니다.");
+    MISSION_ALREADY_COMPLETE(HttpStatus.BAD_REQUEST, "MM400", "이미 완료된 미션입니다."),
+
+    // 비밀번호 틀렸을 때 오류
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "M001", "비밀번호가 올바르지 않습니다."),
+
+    // token 관련 오류
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "AT400", "유효하지 않은 토큰입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.dto.memberMission.MemberMissionResponseDTO;
 import umc.spring.service.MemberMissionService.MemberMissionService;
-import umc.spring.validation.annotation.ValidatedPage;
 
 @RestController
 @RequiredArgsConstructor
