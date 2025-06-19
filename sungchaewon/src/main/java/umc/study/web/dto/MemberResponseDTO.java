@@ -19,4 +19,23 @@ public class MemberResponseDTO {
         LocalDateTime createdAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LoginResultDTO {
+        Long memberId;
+        String accessToken;
+    }
+
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberInfoDTO {
+        private Long id;
+        private String nickname;
+    }
+
 }
