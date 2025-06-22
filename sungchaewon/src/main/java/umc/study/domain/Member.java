@@ -12,6 +12,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.enums.MemberStatus;
+import umc.study.domain.enums.Role;
 import umc.study.domain.enums.SocialType;
 import umc.study.domain.enums.mapping.MemberAgree;
 import umc.study.domain.enums.mapping.MemberMission;
@@ -30,8 +31,9 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 🔑 인코딩된 비밀번호만 사용
     @Column(nullable = false, length = 100)
-    private String encodedPassword;
+    private String password;
 
     @Column(nullable = false, length = 20)
     private String name;
@@ -52,7 +54,6 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(10)")
     private Gender gender;
 
-    //8주차에 누락한 나이 추가
     @Column(nullable = false)
     private Integer age;
 
@@ -66,11 +67,14 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 50)
-    private String email;
-
     @ColumnDefault("0")
     private Integer point;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -87,11 +91,25 @@ public class Member extends BaseEntity {
     @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
-    public static Member of(String encodedPassword, String name, String nickname, Boolean isDeleted,
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
+
+    public String getEncodedPassword() {
+        return this.password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    // 🏗 정적 팩토리 메서드
+    public static Member of(String password, String name, String nickname, Boolean isDeleted,
                             String address, String specAddress, Integer age,
-                            SocialType socialType, MemberStatus status, String email) {
+                            SocialType socialType, MemberStatus status, String email, Role role, Gender gender) {
         return Member.builder()
-                .encodedPassword(encodedPassword)
+                .password(password)
                 .name(name)
                 .nickname(nickname)
                 .isDeleted(isDeleted)
@@ -101,6 +119,8 @@ public class Member extends BaseEntity {
                 .socialType(socialType)
                 .status(status)
                 .email(email)
+                .role(role)
+                .gender(gender)
                 .point(0)
                 .build();
     }

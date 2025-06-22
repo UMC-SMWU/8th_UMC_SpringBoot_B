@@ -8,50 +8,57 @@ import umc.study.web.dto.MemberRequestDTO;
 import umc.study.web.dto.MemberResponseDTO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.ArrayList;
 
 public class MemberConverter {
 
-    public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member){
-        return MemberResponseDTO.JoinResultDTO.builder()
-                .memberId(member.getId())
-                .createdAt(LocalDateTime.now())
-                .build();
-    }
+    public static Member toMember(MemberRequestDTO.JoinDto request) {
+        Gender gender = switch (request.getGender()) {
+            case 1 -> Gender.MALE;
+            case 2 -> Gender.FEMALE;
+            case 3 -> Gender.NONE;
+            default -> throw new IllegalArgumentException("유효하지 않은 gender 값입니다.");
+        };
 
-    public static Member toMember(MemberRequestDTO.JoinDto request){
-
-        Gender gender = null;
-
-        switch (request.getGender()){
-            case 1 -> gender = Gender.MALE;
-            case 2 -> gender = Gender.FEMALE;
-            case 3 -> gender = Gender.NONE;
-        }
-
-        // 생년월일로 나이 계산
-        LocalDate birthDate = LocalDate.of(
-                request.getBirthYear(),
-                request.getBirthMonth(),
-                request.getBirthDay()
-        );
-        int age = Period.between(birthDate, LocalDate.now()).getYears();
+        int age = LocalDate.now().getYear() - request.getBirthYear();
 
         return Member.builder()
                 .name(request.getName())
+                .email(request.getEmail())
+                .password(request.getPassword()) // 나중에 서비스에서 암호화 예정
                 .gender(gender)
-                .age(age)
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
-
-                // 누락 시 DB 저장 안 되는 필드들
-                .email(request.getEmail())
-                .socialType(SocialType.NONE) // 예시 값, 실제 요청 값에 따라 바꿔도 됨
-                .status(MemberStatus.ACTIVE)  // 기본값으로 ACTIVE 지정
-
-                .memberPreferList(new ArrayList<>()) // builder default 설정
+                .role(request.getRole())
+                .age(age)
+                .isDeleted(false)
+                .socialType(SocialType.NONE)
+                .status(MemberStatus.ACTIVE)
+                .nickname("익명") // 또는 request에서 받을 것
+                .point(0)
+                .memberPreferList(new ArrayList<>())
                 .build();
     }
+
+    public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member) {
+        return MemberResponseDTO.JoinResultDTO.builder()
+                .memberId(member.getId())
+                .createdAt(member.getCreatedAt())
+                .build();
+    }
+
+    public static MemberResponseDTO.LoginResultDTO toLoginResultDTO(Long memberId, String accessToken) {
+        return MemberResponseDTO.LoginResultDTO.builder()
+                .memberId(memberId)
+                .accessToken(accessToken)
+                .build();
+    }
+
+    public static MemberResponseDTO.MemberInfoDTO toMemberInfoDTO(Member member) {
+        return MemberResponseDTO.MemberInfoDTO.builder()
+                .id(member.getId())
+                .nickname(member.getNickname())
+                .build();
+    }
+
 }
