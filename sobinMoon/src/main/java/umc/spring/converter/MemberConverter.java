@@ -17,6 +17,13 @@ public class MemberConverter {
                 .build();
     }
 
+    public static MemberResponseDTO.LoginResultDTO toLoginResultDTO(Long memberId, String accessToken) {
+        return MemberResponseDTO.LoginResultDTO.builder()
+                .memberId(memberId)
+                .accessToken(accessToken)
+                .build();
+    }
+
     public static Member toMember(MemberRequestDTO.JoinDTO request) {
         Gender gender = null;
         switch (request.getGender()) {
@@ -40,6 +47,14 @@ public class MemberConverter {
                 .specAddress(request.getSpecAddress())
                 .role(request.getRole())   // 추가된 코드
                 .memberPreferList(new ArrayList<>())
+                .build();
+    }
+
+    public static MemberResponseDTO.MemberInfoDTO toMemberInfoDTO(Member member) {
+        return MemberResponseDTO.MemberInfoDTO.builder()
+                .email(member.getEmail())
+                .name(member.getName())
+                .gender(String.valueOf(member.getGender()))
                 .build();
     }
 }
